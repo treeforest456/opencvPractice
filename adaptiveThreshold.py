@@ -15,7 +15,7 @@ th2 = cv2.adaptiveThreshold(gray,\
 							255,\
 							cv2.ADAPTIVE_THRESH_GAUSSIAN_C,\
 							cv2.THRESH_BINARY,\
-							41,\
+							11,\
 							1)
 
 cv2.imshow('Original', image)
