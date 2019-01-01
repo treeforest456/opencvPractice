@@ -2,12 +2,7 @@ import cv2
 import numpy as np
 
 image = cv2.imread('chess.jpg')
-# how this function work
-# need to understand
-# try different values of the two numbers we can get different results
-# play with it
 blurred = cv2.pyrMeanShiftFiltering(image, 5, 5)
-# cv2.imshow('blurred', blurred)
 
 
 def filter_my_contours(image, contours):
@@ -31,16 +26,15 @@ th, contours, hierarchy = cv2.findContours(threshold, cv2.RETR_LIST, cv2.CHAIN_A
 print(len(contours))
 
 filtered_contours = filter_my_contours(threshold, contours)
+
 print(len(filtered_contours))
-print(filtered_contours[0].shape)
 
 cv2.drawContours(blurred, filtered_contours, -1, (0, 0, 255), 3)
 
-# bonding box
-for each_contour in filtered_contours:
-	top_left_x, top_left_y = min(each_contour[:, 0, 0]), min(each_contour[:, 0, 1])
-	bottom_right_x, bottom_right_y = max(each_contour[:, 0, 0]), max(each_contour[:, 0, 1])
-	cv2.rectangle(blurred, (top_left_x, top_left_y), (bottom_right_x, bottom_right_y), (255, 0, 0), 3)
+for ii in range(len(filtered_contours)):
+	x, y, w, h = cv2.boundingRect(filtered_contours[ii])
+	image = cv2.rectangle(image, (x, y), (x+w, y+h), (255, 0, 0), 3)
+	cv2.imshow('bounding box', image)
 
 cv2.namedWindow('Display', cv2.WINDOW_NORMAL)
 cv2.imshow('Display', blurred)
