@@ -13,6 +13,7 @@ while True:
 	if ret is False:
 		break
 	else:
+		# regerence frame, substract the reference frame to get the moving cars
 		if reference_frame is None:
 			reference_frame = frame
 			reference_frame = cv2.cvtColor(reference_frame, cv2.COLOR_BGR2GRAY)
