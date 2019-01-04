@@ -9,3 +9,10 @@ cv2.imwrite('gray.jpg', gray)
 b = color[:, :, 0]
 g = color[:, :, 1]
 r = color[:, :, 2]
+
+
+a = np.ones((color.shape[0], color.shape[1]), dtype='uint8') * 100
+
+rgba = cv2.merge((b,g,r,a))
+
+cv2.imwrite('rgba.png', rgba)
